@@ -1,0 +1,39 @@
+{
+  "name": "grunt-proxy",
+  "description": "Start proxy server",
+  "version": "0.0.1",
+  "author": {
+    "name": "Andrei V. Toutoukine",
+    "email": "tut@isuct.ru"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "/blob/master/LICENSE-MIT"
+    }
+  ],
+  "repository" : {
+  	"type"	: "git",
+  	"url"	: "https://github.com/tutukin/grunt-proxy.git"
+  },
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "http-proxy": "0.8.x"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.0",
+    "grunt-contrib-connect": "~0.1.0",
+    "grunt": "~0.4.0rc4",
+    "grunt-simple-mocha": "0.3.x",
+    "should": "1.2.x"
+  },
+  "keywords": [
+    "grunt", "proxy"
+  ]
+}
