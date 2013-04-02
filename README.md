@@ -39,21 +39,22 @@ grunt.initConfig({
   proxy: {
     proxy1 : {
     	options : {
-    		port : 8050,                 // start proxy server, listening to the port 8050
-			target : {                   // make it forward all the requests to localhost:8011
+    		port : 8050,			// start proxy server, listening to the port 8050
+		host : 'localhost',			// bind proxy server to 'localhost' interface
+		target : {				// make it forward all the requests to localhost:8011
 				host: 'localhost',
 				port: 8011
-			}
 		}
+	}
     },
     proxy2 : {
     	options : {
-    		port	: 8051,               // start proxy server, listening to the port 8050
-			router : {                    // make it forward requests according to this table
-				'localhost/host1' : 'localhost:8011',
-				'localhost/host2' : 'localhost:8012'
-			}
+    		port	: 8051,	// start proxy server, listening to the port 8050
+		router : {		// make it forward requests according to this table
+			'localhost/host1' : 'localhost:8011',
+			'localhost/host2' : 'localhost:8012'
 		}
+	}
     }
   },
 })
@@ -66,6 +67,12 @@ Type: `Integer`
 Default value: none
 
 A port number to which the proxy server should listen
+
+#### options.host
+Type: `String`
+Default value: none
+
+An optional hostname that to listen to.
 
 #### options.target
 Type: `Object`
@@ -86,9 +93,28 @@ is totally ignored (this behaviour will be changed in the future).
 
 see tests
 
+### Tests
+
+note, if you see
+
+```
+Warning: Arguments to path.resolve must be strings Use --force to continue.
+```
+
+running grunt simplemocha:unit, please apply [patch](https://github.com/SBoudrias/grunt-simple-mocha/commit/8b93f23efa51d8f0a11aa063e64b464c24dbd243)
+to grunt-simple-mocha
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
 
 ## Release History
-_(Nothing yet)_
+April 2, 2013 v. 0.0.2
+
+	- add `host` option, that is passed to proxy.listen() method
+	- some refactorings
+	- unit tests
+
+January 5, 2013 v. 0.0.1
+
+	- main functionality

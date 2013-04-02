@@ -1,25 +1,25 @@
 'use strict';
 
-var	should	= require('should'),
+var	expect	= require('expect.js'),
 	http	= require('http');
 
 describe('grunt-proxy', function() {
 	
 	it('should forward requests to the target server', function(done) {
 		get('http://localhost:8050/index.html', function (response, body) {
-			response.statusCode.should.equal(200);
-			body.should.equal('HOST:1');
+			expect(response.statusCode).to.equal(200);
+			expect(body).to.equal('HOST:1');
 			done();
 		});	
 	});
 	
 	it('should forward requests using the proxy table', function(done) {
 		get('http://localhost:8051/host1/index.html', function (response, body) {
-			response.statusCode.should.equal(200);
-			body.should.equal('HOST:1');
+			expect(response.statusCode).to.equal(200);
+			expect(body).to.equal('HOST:1');
 			get('http://localhost:8051/host2/index.html', function (response, body) {
-				response.statusCode.should.equal(200);
-				body.should.equal('HOST:2');
+				expect(response.statusCode).to.equal(200);
+				expect(body).to.equal('HOST:2');
 				done();
 			});
 		});

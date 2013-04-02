@@ -13,5 +13,7 @@
   "node": true,
   "es5": true,
   "smarttabs" : true,
-  "strict" : false
+  "strict" : false,
+  "loopfunc" : true,
+  "predef" : ["describe","beforeEach","afterEach","it","expect"]
 }
