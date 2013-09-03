@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 			listenArgs = [],
 			proxy;
 
-		if (options.router) { // TODO: use options config to configure createServer call
+		if (options.router) {
 			// setting router supercedes target
 			delete options.target;
 		}
