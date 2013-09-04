@@ -87,22 +87,15 @@ Default value: none
 
 Proxy table, which is a simple lookup table that maps incoming requests
 to proxy target locations. If options.target is also given the proxy table
-is totally ignored (this behaviour will be changed in the future). 
- 
+is totally ignored (this behaviour will be changed in the future).
+
 ### Usage Examples
 
 see tests
 
 ### Tests
 
-note, if you see
-
-```
-Warning: Arguments to path.resolve must be strings Use --force to continue.
-```
-
-running grunt simplemocha:unit, please apply [patch](https://github.com/SBoudrias/grunt-simple-mocha/commit/8b93f23efa51d8f0a11aa063e64b464c24dbd243)
-to grunt-simple-mocha
+grunt test
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style.

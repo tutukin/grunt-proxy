@@ -1,6 +1,6 @@
 /*
  * grunt-proxy
- * 
+ *
  *
  * Copyright (c) 2012 Andrei V. Toutoukine
  * Licensed under the MIT license.
@@ -15,16 +15,16 @@ module.exports = function(grunt) {
 			gruntfile	: {
 				src	: 'Gruntfile.js'
 			},
-			
+
 			tasks		: {
 				src	: ['tasks/**/*.js']
 			},
-			
+
 			tests		: {
 				src	: ['test/*.js'],
 				options : {jshintrc:'test/.jshintrc'}
 			},
-			
+
 			options: {
 				jshintrc: '.jshintrc',
 			},
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		
+
 		// Test servers
 		connect: {
 			host1:	{
@@ -74,28 +74,25 @@ module.exports = function(grunt) {
 		},
 
 		// Unit tests.
-		simplemocha : {
-			options		: {
-				reporter : 'spec'
-			},
+		mochaTest : {
 			all : { src : '<%= jshint.tests.src %>' },
 			unit: { src : 'test/unit_test.js'}
 		},
-		
+
 		watch : {
 			gruntfile	: {
 				files		: '<%= jshint.gruntfile.src %>',
 				tasks		: ['jshint:gruntfile']
 			},
-			
+
 			tasks		: {
 				files		: '<%= jshint.tasks.src %>',
-				tasks		: ['jshint:tasks','simplemocha:unit']
+				tasks		: ['jshint:tasks','mochaTest:unit']
 			},
-			
+
 			tests		: {
 				files		: '<%= jshint.tests.src %>',
-				tasks		: ['jshint:tests','simplemocha:unit']
+				tasks		: ['jshint:tests','mochaTest:unit']
 			}
 		}
 
@@ -109,11 +106,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-simple-mocha');
+	grunt.loadNpmTasks('grunt-mocha-test');
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'connect', 'proxy', 'simplemocha:all']);
+	grunt.registerTask('test', ['clean', 'connect', 'proxy', 'mochaTest:unit']);
 
 	// By default, lint and run all tests.
 	grunt.registerTask('default', ['test']);
