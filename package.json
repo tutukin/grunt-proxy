@@ -1,7 +1,7 @@
 {
   "name": "grunt-proxy",
   "description": "Start proxy server",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": "https://github.com/tutukin/grunt-proxy",
   "author": {
     "name": "Andrei V. Toutoukine",
