@@ -75,8 +75,8 @@ module.exports = function(grunt) {
 
 		// Unit tests.
 		mochaTest : {
-			all : { src : '<%= jshint.tests.src %>' },
-			unit: { src : 'test/unit_test.js'}
+			integr	: { src : 'test/proxy_test.js' },
+			unit	: { src : 'test/unit_test.js'}
 		},
 
 		watch : {
@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 
 			tests		: {
 				files		: '<%= jshint.tests.src %>',
-				tasks		: ['jshint:tests','mochaTest:unit']
+				tasks		: ['jshint:tests','mochaTest']
 			}
 		}
 
