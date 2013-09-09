@@ -102,12 +102,17 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
 
 ## Release History
-April 2, 2013 v. 0.0.2
+September ??, 2013. **v. 0.0.3**
+	
+	- support for additional config options (`https`, `changeOrigin` etc.) options
+	- by default proxy listens to the port 9000
+	
+April 2, 2013. **v. 0.0.2**
 
 	- add `host` option, that is passed to proxy.listen() method
 	- some refactorings
 	- unit tests
 
-January 5, 2013 v. 0.0.1
+January 5, 2013. **v. 0.0.1**
 
 	- main functionality
