@@ -40,21 +40,25 @@ grunt.initConfig({
     proxy1 : {
     	options : {
     		port : 8050,			// start proxy server, listening to the port 8050
-		host : 'localhost',			// bind proxy server to 'localhost' interface
-		target : {				// make it forward all the requests to localhost:8011
+			host : 'localhost',			// bind proxy server to 'localhost' interface
+			target : {				// make it forward all the requests to localhost:8011
 				host: 'localhost',
 				port: 8011
+			}
 		}
-	}
     },
     proxy2 : {
-    	options : {
-    		port	: 8051,	// start proxy server, listening to the port 8050
-		router : {		// make it forward requests according to this table
-			'localhost/host1' : 'localhost:8011',
-			'localhost/host2' : 'localhost:8012'
+    	options : { // start proxy server, listening to the default port 9000
+			router : {		// make it forward requests according to this table
+				'localhost/secure'    : 'https://mysecure.server.com:443/subpath',
+                'localhost/insecure/' : 'http://127.0.0.1:3000'
+			},
+			https  : {
+				key   : fs.readFileSync( path.join(proxyKeysDir, 'server.key'), 'utf8' ),
+                cert  : fs.readFileSync( path.join(proxyKeysDir, 'server.crt'), 'utf8' )
+			},
+			changeOrigin : true
 		}
-	}
     }
   },
 })
@@ -62,36 +66,35 @@ grunt.initConfig({
 
 ### Options
 
-#### options.port
+The simple rule is: all options except for `options.port` and `options.host` are passed to
+http-proxy's `proxy.createServer(options)` method. The `options.port` and `options.host` are
+removed from `options` and are passed to server's `server.listen(port, host)` method.
+
+#### Listener options
+
+##### options.port
 Type: `Integer`
-Default value: none
+Default value: 9000
 
-A port number to which the proxy server should listen
+A port number to which the proxy server should listen to.
 
-#### options.host
+##### options.host
 Type: `String`
 Default value: none
 
-An optional hostname that to listen to.
+An optional hostname at which the proxy accepts connections.
 
-#### options.target
-Type: `Object`
-Default value: none
+#### Proxy options
 
-An object with properties `host` and `port`. If this option is given then all the requests to
-the proxy server will be proxied to the specified target.
+All options except for the abovementioned are passed to http-proxy's 
+`proxy.createServer(options)` method. Please refer to [http-proxy][]
+documentation.
 
-#### options.router
-Type: `Object`
-Default value: none
-
-Proxy table, which is a simple lookup table that maps incoming requests
-to proxy target locations. If options.target is also given the proxy table
-is totally ignored (this behaviour will be changed in the future).
+Note, if `options.router` is given, `options.target` is ignored.
 
 ### Usage Examples
 
-see tests
+See overview section above and tests
 
 ### Tests
 
