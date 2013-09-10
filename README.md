@@ -68,11 +68,7 @@ grunt.initConfig({
 
 The simple rule is: all options except for `options.port` and `options.host` are passed to
 http-proxy's `proxy.createServer(options)` method. The `options.port` and `options.host` are
-<<<<<<< HEAD
-removed from `options` and are passed to server's `server.listen(port, host)` method.
-=======
-removed from `options` passed to server's `server.listen(port, host)` method.
->>>>>>> a9cd32ed6a0a120397bfa08523277aa7d0bd48ff
+removed from `options` and are passed to the server's `server.listen(port, host)` method.
 
 #### Listener options
 
