@@ -102,4 +102,21 @@ module.exports = [{
 		}}
 	],
 	listen : [listen.defaultPort]
+}, {
+
+	title: 'should correctly process keepalive',
+	options	: {
+		keepalive: true,
+		target : {
+			host : config.host,
+			port : config.port
+		}
+	},
+	createServer	: [{
+		target : {
+			host : config.host,
+			port : config.port
+		}}
+	],
+	listen : [listen.defaultPort]
 }];

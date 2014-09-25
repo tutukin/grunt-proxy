@@ -12,7 +12,8 @@ var	expect	= require('expect.js'),
 		registerMultiTask: sinon.spy()
 	},
 	Context	= {
-		options		: sinon.stub()
+		options		: sinon.stub(),
+		async			: sinon.stub()
 	},
 	optests = require('./optests.js');
 
@@ -28,7 +29,9 @@ describe('grunt-proxy task', function() {
 		Proxy.createServer.reset();
 		Grunt.registerMultiTask.reset();
 		Context.options.reset();
-		
+		Context.async.reset();
+		Context.async.returns(function() { });
+
 		done();
 	});
 	
@@ -83,7 +86,13 @@ describe('grunt-proxy task', function() {
 			expect(Context.options.calledOnce).to.equal(true);
 			done();
 		});
-		
+
+		it('should call this.async()', function(done) {
+			callback.call(Context);
+			expect(Context.async.calledOnce).to.equal(true);
+			done();
+		});
+
 		optests.forEach( function (t) {
 			it(t.title, function (done) {
 				Context.options.returns(t.options);
