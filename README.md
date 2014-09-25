@@ -84,9 +84,15 @@ Default value: none
 
 An optional hostname at which the proxy accepts connections.
 
+##### options.keepalive
+Type: `Boolean`
+Default value: false
+
+An optional parameter to specify that the proxy should continue running.
+
 #### Proxy options
 
-All options except for the abovementioned are passed to http-proxy's 
+All options except for the abovementioned are passed to http-proxy's
 `proxy.createServer(options)` method. Please refer to [http-proxy][]
 documentation.
 
