@@ -15,6 +15,8 @@ module.exports = function(grunt) {
 
 	grunt.registerMultiTask('proxy', 'Start proxy server', function() {
 		var options = this.options(),
+		  done = this.async(),
+			keepAlive = false,
 			listenPort = DEFAULT_PORT,
 			listenArgs = [],
 			proxy;
@@ -22,6 +24,12 @@ module.exports = function(grunt) {
 		if (options.router) {
 			// setting router supercedes target
 			delete options.target;
+		}
+
+		if ( typeof options.keepalive !== 'undefined' ) {
+			// convert to boolean and remove from options
+			keepAlive = !!options.keepalive;
+			delete options.keepalive;
 		}
 
 		if ( typeof options.port !== 'undefined' ) {
@@ -41,6 +49,10 @@ module.exports = function(grunt) {
 
 		proxy = httpProxy.createServer.call(httpProxy,options);
 		proxy.listen.apply(proxy,listenArgs);
+
+		if (!keepAlive) {
+			done();
+		}
 
 	});
 
